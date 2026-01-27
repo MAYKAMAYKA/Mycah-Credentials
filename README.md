@@ -1,2 +1,1 @@
-<img width="10734" height="7272" alt="CCNA-_Enterprise_Networking-_Security-_and_Automation_certificate_mycah_isabel_raymundo-dlsl-edu-ph_3de4d8b1-8023-431f-8f63-a46295f5ce75" src="https://github.com/user-attachments/assets/47b51894-d5b0-48d0-9c92-c433f705a0cc" /># Mycah-Credentials
-<img width="10734" height="7272" alt="CCNA-_Enterprise_Networking-_Security-_and_Automation_certificate_mycah_isabel_raymundo-dlsl-edu-ph_3de4d8b1-8023-431f-8f63-a46295f5ce75" src="https://github.com/user-attachments/assets/3f46b6f9-a823-457a-ab03-b52ce7ac2216" />
+
