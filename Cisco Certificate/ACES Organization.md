@@ -2,6 +2,9 @@
 
 The Association of Computer Engineering Students (ACES) is the professional organization representing the Computer Engineering students of De La Salle Lipa. I was an officer for three years.
 
+<img width="1312" height="854" alt="image" src="https://github.com/user-attachments/assets/9d84a75b-2ef5-45f8-b87f-a13b7c1328f2" />
+
+
 ## Executive President · Jun 2024 - Jun 2025Executive President · Jun 2024 - Jun 2025
 
 As Executive President of ACES, I lead the organization in advancing its mission to empower Computer Engineering students through impactful programs, strategic partnerships, and inclusive leadership. I oversee all executive functions, guide long-term planning, and ensure the successful implementation of academic, technical, and community-based initiatives. My role involves representing the organization in institutional collaborations, supporting committee heads, and fostering a cohesive environment where innovation, service, and student development thrive.
