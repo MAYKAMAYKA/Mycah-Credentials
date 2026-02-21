@@ -1,0 +1,87 @@
+## Phising Email Sent<br>
+<img width="1415" height="661" alt="image" src="https://github.com/user-attachments/assets/8570bd55-4a7f-47bb-9941-ca62d69eec4d" />
+
+### Details
+
+A phishing email was sent. It states that the user was flag as a spam sender.
+<br>
+### Analysis
+Multiple methods were used to analyze the email. <br>
+To avoid disclosing internal tooling and infrastructure, xxxx.com is used as a placeholder for the sender domain. The term “claimed domain” refers to the domain that the sender attempts to spoof or impersonate during the email authentication analysis.
+
+<br>
+
+#### Email Body
+
+ Incorrect grammar and punctuation in the email body. This is a common sign of phishing, indicating the email was likely not professionally written. <br>
+ Evidences: 
+ <ul> 
+  <li>The first sentence is a run-in sentence that provides several independent ideas without using proper punctuations.</li>
+  <li>The space between 'hold' and the period </li>
+   <li>Double spacing between the 'validating' and 'your'.</li>
+   <li>Instead of <em>Take steps by validating  your email address now fix this issue</em> use <em>Take steps by validating your email address now <strong>to</strong> fix this issue </em>. </li>
+ </ul>
+<br>
+
+#### Email Header<br>
+Email sender is from xx@xxxx.com. This is different from the usual support email of the claimed domain.
+
+<img width="994" height="120" alt="image" src="https://github.com/user-attachments/assets/e8699edb-b705-428d-83cd-bd384cfa29a4" />
+Upon checking via MXToolbox, the domain lacks a DMARC policy. There is no Sender Policy Framework (SPF) record configured, which indicates that the domain is not authorized to send emails on behalf of any specific mail servers. Additionally, the absence of DomainKeys Identified Mail (DKIM) suggests that outgoing messages cannot be cryptographically verified as originating from the claimed domain.
+<br>
+
+
+#### Virus Total Result of the sender domain
+The xxxx.com is not flagged as malicious by any OSINT tools as it is a legitimate domain registered under the claimed domain. Further research shows that  claimed domain has a domain selling service. Thus, the attacker is leveraging the 'for sale' domains to bypass reputation checkers.
+<br>
+
+#### Attached Link 1 Analysis via URLScan.io
+The first link is a redirect to amazon[.]com to hide the original intention of the link.
+
+<img width="1325" height="891" alt="image" src="https://github.com/user-attachments/assets/5efd4dae-b628-4d93-a7ff-74709239ebe5" />
+<br>
+
+#### Attached Link 2 Analysis via URLScan.io
+At first scan, the based domains appear clean as it is sophiticatedly obsfuscated.
+
+<img width="1353" height="533" alt="image" src="https://github.com/user-attachments/assets/23a9992e-0524-4502-b61a-b8f872eecb96" />
+The phishing email contains two links. When checked on VirusTotal, only one security vendor flagged the full URL as phishing. However, when analyzing just the base domains (excluding the tracking token), they appear clean since they use legitimate domains. This likely helped the link bypass detection, as the malicious content is hidden behind trusted infrastructure and redirect layers.
+
+<img width="931" height="663" alt="image" src="https://github.com/user-attachments/assets/912b6c4a-cb81-4ca8-9329-ed9328319a6f" />
+OSINT analysis using urlscan.io shows that the landing page of the link appears to be a Network Solutions verification page. It uses Cloudfare logo, a trusted reverse proxy, to gain the trust of the users. It even states, <em>'We've Updated Our Look</em> so that users will not suspect the difference between the original claimed domain landing page and the phishing one.
+
+
+<img width="1306" height="883" alt="image" src="https://github.com/user-attachments/assets/1c92eea0-ad6e-4ecd-9fc5-d36824ec28b1" />
+
+However, the source code (as provided by urlscan.io) contains several red flags. If the link is opened in a sandbox or security scanner, it redirects to https://www[.]amazon[.]com to conceal its activity. The page also uses ghost_protocol: when accessed from a normal browser, it sends a POST request with ghost_protocol=engage to retrieve new HTML content, which likely contains the actual phishing form or malicious link. Overall, this is a staged phishing setup designed to evade detection.
+
+The second link uses a “trap” method, which also redirects to Amazon when triggered.
+<br>
+
+#### Attached Links Analysis Via Cyberchef (manually)
+
+This is the manual method of knowing link redirects. Note that we can use URLScan.io instead for faster analysis. This is for education puposes only.
+
+<img width="505" height="27" alt="image" src="https://github.com/user-attachments/assets/d9c71806-16bb-411b-a93a-947bdffb0f6e" /> <br>
+Link 2 above contains a long token value. This is a JWT (JSON Web Token). A JWT always consists of three sections separated by dots.
+<br>
+<img width="1400" height="464" alt="image" src="https://github.com/user-attachments/assets/1bb27568-f581-474f-8d25-39b31eed1199" />
+Upon using cyberchef, we discover that this is a trap link. A trap link ("honey link) is  used as an escape if the trap condition is met or a security checker is detected. It acts as an 'escape' to Amazon[.]com.
+<br>
+<img width="679" height="22" alt="image" src="https://github.com/user-attachments/assets/e61cb170-e843-4c7d-b12c-262562cedeef" />
+Link 2 above contains a long token value. This is a JWT (JSON Web Token). A JWT always consists of three sections separated by dots.
+<br>
+
+<img width="1529" height="541" alt="evidence1 1" src="https://github.com/user-attachments/assets/7a05ae28-34d9-4e16-bcbb-a5a42c36c26f" />
+Copy the token between the <em>=</em> and the <em>&r</em>. It will reveal the obfuscated link. Now, we see another obsfuscated destination denoted by the <strong>d</strong>. 
+<br>
+<br>
+
+
+<img width="1415" height="410" alt="image" src="https://github.com/user-attachments/assets/93cb3173-4f54-4090-ac90-c8e82f167208" />
+The <strong>%3</strong> indicates that it is a url that's why we use <em>Url Decode</em> to convert "%3D" to "=". We then know to convert it from base64 as the sign <strong>=</strong> at the end of the string is the main indicator. Afterwards, we got the main obsfuscated part but that's all where can check. The final output is a part of pattern identification. The first part is a token with a high entropy pattern, meanig we cannot simply decode it as there is no patterns. It is likely randomized. The second part is the hexadecimal ID or the hash. We cannot decode a hash back to its original form unless we have a database of known hashes. The separator patter <strong>::</strong> is a common developer technique for sticking two distinct "metadata" pieces together.
+<br>
+
+### Conclusion <br>
+In conclusion, the email received at 1:24 AM is clearly a phishing attempt that was carefully designed to bypass basic security checks and reputation scanners. The attacker used a legitimate but unrelated domain (cookedata[.]com) along with trusted services like monday[.]com and gatewaypark[.]enrealty[.]org to make the links appear clean. The staged behavior, sandbox detection, Amazon redirection, and use of ghost_protocol to load the real phishing content show that this was intentionally built to evade analysis and target real users. Based on these findings, the email is malicious and intended to harvest credentials while impersonating Network Solutions.
+
