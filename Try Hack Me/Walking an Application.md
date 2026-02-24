@@ -1,1 +1,55 @@
+## Task 3: Viewing Page Source
+<img width="905" height="668" alt="image" src="https://github.com/user-attachments/assets/ce7dae90-1ec4-49ac-bf95-90306b5d20ff" /><br>
+To do this, go to page source mode by right clicking->inspect
+<br>
+#### What is the Flag from HTML comment?
+##### ANSWER: THM{HTML_COMMENTS_ARE_DANGEROUS}
+<img width="715" height="148" alt="image" src="https://github.com/user-attachments/assets/c5ddbb8f-f363-4611-85d7-40fad8d22df9" /> <br>
+Check the comment section
+<br>
+
+<img width="710" height="218" alt="image" src="https://github.com/user-attachments/assets/cc86ab38-e8a0-425e-be63-92c69889b11b" /><br>
+Plug the address to the original page source
+
+
+#### What is the flag from the secret link?
+##### ANSWER: THM{NOT_A_SECRET_ANYMORE}
+
+<img width="780" height="30" alt="image" src="https://github.com/user-attachments/assets/9227bfde-8629-41b4-9ce6-658f6132f93b" /><br>
+Click secret link
+
+#### What is the flag in directory listing?
+
+#### What is the framework flag?
+##### ANSWER: THM{KEEP_YOUR_SOFTWARE_UPDATED}
+<img width="982" height="46" alt="image" src="https://github.com/user-attachments/assets/6bfb2cca-561c-4bc1-b885-522696d8505a" /><br>
+Visit this link.
+
+<img width="880" height="128" alt="image" src="https://github.com/user-attachments/assets/a1aa3ebc-e388-4702-b838-73adcc31520a" />
+<img width="730" height="160" alt="image" src="https://github.com/user-attachments/assets/69e93e75-1d6f-4067-ba5d-7b72f57cd2ae" />
+Download the zip.
+
+
+## Task 4: Developer Tools Inspector
+##### ANSWER: THM{NOT_SO_HIDDEN}
+<img width="1033" height="683" alt="image" src="https://github.com/user-attachments/assets/80cecb2c-e62b-4f98-a1cf-d2d5f53e75cd" />
+<br>
+It requires premium membership to access. But we can simply change block to none.
+
+<img width="1027" height="672" alt="image" src="https://github.com/user-attachments/assets/144de3b3-1dcc-4f9d-abc1-ad5a993d2bc9" />
+
+
+## Task 5: Developer Tools Debugger
+<img width="1320" height="710" alt="image" src="https://github.com/user-attachments/assets/61ab29ae-55ce-40c9-a31e-a749dc30aa09" /> <br>
+FGo to debugger and find the js. User pretier to make the codre readable. Double click on that line to make it stop running.
+##### ANSWER: THM{CATCH_ME_IF_YOU_CAN}
+
+## Task 6: Developer Tools Network
+<img width="1119" height="619" alt="image" src="https://github.com/user-attachments/assets/98295f07-f1e7-48f5-a099-7ad628361153" /><br>
+Try sending a message and focus on the POST. Double click to see the flag.
+
+##### ANSWER: THM{GOT_AJAX_FLAG}
+<img width="261" height="115" alt="image" src="https://github.com/user-attachments/assets/f6d911e3-7c13-4410-b535-4b6673c15b37" /><br>
+Double click on teh Flag to Reveal the final answer.
+
 
